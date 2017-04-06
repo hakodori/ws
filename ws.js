@@ -6,11 +6,13 @@ http.createServer(function(request, response) {
 
       str = request.url;
       if (str != "/") {
-        str = str.replace("/", "");  
-        console.log(str);
+        str = str.replace("/", "");
+        //console.log(str);
         var res = {};
         parseString(str, res);
         response.end(JSON.stringify(res));
+      } else {
+        response.end();
       }
 
 }).listen(process.env.PORT || 5000);
@@ -20,7 +22,7 @@ function parseString(str, res){
     splitArr = str.split('_', 50);
 
     splitArr.forEach(function(item, i, splitArr) {
-      console.log(item);
+      //console.log(item);
       analyzeText(item, res);
     });
 
